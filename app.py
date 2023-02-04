@@ -3,7 +3,7 @@ import json
 from kafka import KafkaConsumer, KafkaProducer
 from prediction import predict
 
-KAFKA_BOOTSTRAP_SERVER = os.getenv('KAFKA_BOOTSTRAP_SERVER')
+KAFKA_BOOTSTRAP_SERVER = "my-cluster-kafka-bootstrap.kafka.svc.cluster.local"
 KAFKA_SECURITY_PROTOCOL = os.getenv('KAFKA_SECURITY_PROTOCOL')
 KAFKA_SASL_MECHANISM = os.getenv('KAFKA_SASL_MECHANISM')
 KAFKA_USERNAME = os.getenv('KAFKA_USERNAME')
@@ -23,19 +23,11 @@ def main():
     consumer = KafkaConsumer(KAFKA_CONSUMER_TOPIC,
                              group_id=KAFKA_CONSUMER_GROUP,
                              bootstrap_servers=KAFKA_BOOTSTRAP_SERVER,
-                             security_protocol=KAFKA_SECURITY_PROTOCOL,
-                             sasl_mechanism=KAFKA_SASL_MECHANISM,
-                             sasl_plain_username=KAFKA_USERNAME,
-                             sasl_plain_password=KAFKA_PASSWORD,
                              enable_auto_commit=False,
                              api_version_auto_timeout_ms=30000,
                              request_timeout_ms=450000)
 
     producer = KafkaProducer(bootstrap_servers=KAFKA_BOOTSTRAP_SERVER,
-                             security_protocol=KAFKA_SECURITY_PROTOCOL,
-                             sasl_mechanism=KAFKA_SASL_MECHANISM,
-                             sasl_plain_username=KAFKA_USERNAME,
-                             sasl_plain_password=KAFKA_PASSWORD,
                              api_version_auto_timeout_ms=30000,
                              max_block_ms=900000,
                              request_timeout_ms=450000,

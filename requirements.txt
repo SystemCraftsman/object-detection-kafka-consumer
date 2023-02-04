@@ -6,3 +6,6 @@ tensorflow
 matplotlib
 numpy
 boto3
+
+##
+strimzi-kafka-cli
