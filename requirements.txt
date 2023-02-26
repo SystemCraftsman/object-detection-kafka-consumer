@@ -7,5 +7,5 @@ matplotlib
 numpy
 boto3
 
-##
-strimzi-kafka-cli
+## Strimzi
+strimzi-kafka-cli==0.1.0a65
